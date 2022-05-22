@@ -13,27 +13,22 @@ DATA=$(echo $TOTAL | cut -d' ' -f 4,5)
 
 message=$(cat << EOF
 *Host*: \`$(hostname)\`
-%0A
 *Requests attempted*: \`$ATTEMPTED\`
-%0A
 *Requests sent*: \`$SENT\`
-%0A
 *Responses received*: \`$RECEIVED\`
-%0A
 *Data sent*: \`$DATA\`
-%0A
 *VPN config*: \`$VPN_CONFIG\`
 %0A
 *Top 5 targets by traffic*:
-%0A
 $TARGETS
 EOF
 )
 
 keyboard="{\"inline_keyboard\":[[{\"text\":\"Open health report\", \"url\":\"${HEALTH_URL}\"}]]}"
 
-curl -s --data "text=${message}" \
-        --data "reply_markup=${keyboard}" \
-        --data "chat_id=$TELEGRAM_NOTIFY_CHAT_ID" \
-        --data "parse_mode=markdown" \
-        "https://api.telegram.org/bot${TELEGRAM_NOTIFY_TOKEN}/sendMessage"
+curl -sS -o /dev/null \
+     --data "text=${message}" \
+     --data "reply_markup=${keyboard}" \
+     --data "chat_id=$TELEGRAM_NOTIFY_CHAT_ID" \
+     --data "parse_mode=markdown" \
+     "https://api.telegram.org/bot${TELEGRAM_NOTIFY_TOKEN}/sendMessage"
