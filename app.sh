@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -x
-
 DB1000N_SETUP_DOCUMENT_ROOT="$(dirname $(realpath $0))"
 DB1000N_SETUP_APP_COMMAND="$(realpath $0)"
 

@@ -10,7 +10,8 @@ SENT=$(echo $TOTAL | cut -d' ' -f 2)
 RECEIVED=$(echo $TOTAL | cut -d' ' -f 3)
 DATA=$(echo $TOTAL | cut -d' ' -f 4,5)
 
-message = $(cat << EOF
+
+message=$(cat << EOF
 *Host*: \`$(hostname)\`
 %0A
 *Requests attempted*: \`$ATTEMPTED\`
